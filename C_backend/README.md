@@ -3,10 +3,12 @@
 Handles file uploads, slices DICOM/NIfTI scans into 2D images, and
 calculates volume/metrics from a segmentation mask.
 
+This is Dev C's piece of the AI_Nexus spleen viewer project — see the
+full team's API contract in `API_CONTRACT.md` in this same folder.
+
 ## Setup
 
-You already have a `venv` folder from before. If this is a fresh copy,
-create one first:
+Create a virtual environment inside this folder (do this once):
 
 ```powershell
 python -m venv venv
@@ -28,6 +30,14 @@ Install dependencies:
 
 ```powershell
 pip install -r requirements.txt
+```
+
+**Note:** if you're testing DICOM files with compressed pixel data
+(common in real hospital exports, e.g. JPEG Lossless or JPEG2000),
+you'll also need:
+
+```powershell
+pip install pylibjpeg pylibjpeg-libjpeg pylibjpeg-openjpeg
 ```
 
 ## Run the server
@@ -111,12 +121,21 @@ np.save(f"storage/{study_id}/mask.npy", fake_mask)
 Then hit `GET /metrics/{study_id}` and confirm you get sensible numbers
 back.
 
+## Quick test file included
+
+`test_scan.nii.gz` in this folder is a small synthetic NIfTI file
+(random data, not a real scan) meant purely for smoke-testing the
+`/upload` → `/slices` pipeline without needing a real DICOM/NIfTI scan.
+Upload it via `/docs` to confirm your setup works end-to-end.
+
 ## Project structure
 
 ```
-spleen-backend/
+C_backend/
   main.py                 # FastAPI app, wires routers together
   requirements.txt
+  API_CONTRACT.md          # full endpoint reference for the whole team
+  test_scan.nii.gz          # tiny synthetic file for quick smoke-testing
   routers/
     upload.py              # POST /upload
     slices.py               # GET /slices/...
@@ -124,6 +143,7 @@ spleen-backend/
   services/
     volume_loader.py         # DICOM/NIfTI -> numpy volume
   storage/                    # uploaded scans + cached volumes live here
+                                # (gitignored - not tracked in the repo)
 ```
 
 ## Next steps / API contract with the team
