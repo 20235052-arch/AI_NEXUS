@@ -69,5 +69,7 @@ def load_nifti(filepath: Path):
     """
     img = nib.load(str(filepath))
     volume = img.get_fdata()
-    spacing = img.header.get_zooms()  # (x, y, z) mm per voxel
+    # nibabel returns numpy.float32 here, which FastAPI's JSON encoder
+    # cannot serialize directly -- cast to native Python float.
+    spacing = tuple(float(v) for v in img.header.get_zooms())
     return volume, spacing, "UNKNOWN"
