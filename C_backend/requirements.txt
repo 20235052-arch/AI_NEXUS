@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+pydicom
+nibabel
+numpy
+pillow
+scipy

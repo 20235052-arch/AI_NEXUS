@@ -1,0 +1,17 @@
+# Virtual environment - everyone creates their own locally
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Uploaded/test scan data and cached volumes - not code, can be large
+storage/*
+!storage/.gitkeep
+
+# Editor/OS junk
+.vscode/
+.DS_Store
+
+# Environment secrets, if any get added later
+.env
