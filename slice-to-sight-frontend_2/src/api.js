@@ -35,9 +35,9 @@ export const MOCK_FLAGS = {
                          // gracefully below, not mocked.
   confidence: true,      // Dev D — not done yet
   mesh: true,             // Dev D — not done yet
-  anatomy: true,           // Dev E — not done yet
-  ask: true,                // Dev E — not done yet
-  quiz: true,                 // Dev E — not done yet
+  anatomy: false,           // Dev E — not done yet
+  ask: false,                // Dev E — not done yet
+  quiz: false,                 // Dev E — not done yet
 };
 
 const fakeDelay = (ms = 800) => new Promise((resolve) => setTimeout(resolve, ms));
