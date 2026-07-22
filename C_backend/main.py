@@ -17,8 +17,10 @@ from routers import (
     metrics,
     segmentation,
     mesh,
+    anatomy,
 )
 app = FastAPI(title="Spleen Viewer Backend")
+app.include_router(anatomy.router)
 
 # Allow the React frontend (running on a different port, e.g. 3000/5173)
 # to call this API during development. Tighten allow_origins before
