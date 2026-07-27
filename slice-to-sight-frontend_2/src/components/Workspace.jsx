@@ -6,6 +6,7 @@
 import { useState } from "react";
 import SliceViewer from "./SliceViewer";
 import Placeholder3DViewer from "./Placeholder3DViewer";
+import SpleenViewer3D from "./SpleenViewer3D";
 import MeasurementsPanel from "./MeasurementsPanel";
 import TrustPanel from "./TrustPanel";
 import AnatomyPanel from "./AnatomyPanel";
@@ -25,7 +26,7 @@ export default function Workspace({ studyId, organ, numSlices, modality }) {
       <div className="workspace-grid">
         <SliceViewer studyId={studyId} />
 
-        <Placeholder3DViewer meshUrl={null} onStructureClick={setSelectedStructure} />
+        <SpleenViewer3D meshUrl={null} onStructureClick={setSelectedStructure} />
 
         <MeasurementsPanel studyId={studyId} structure={organ} />
         <TrustPanel studyId={studyId} structure={organ} />
