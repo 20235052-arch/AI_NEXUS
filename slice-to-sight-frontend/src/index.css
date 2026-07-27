@@ -170,6 +170,20 @@ input[type="range"] {
   transform: scale(1.1);
 }
 
+/* --- Real 3D viewer (Dev B) --- */
+
+.viewer-3d {
+  display: flex;
+  flex-direction: column;
+}
+
+.viewer-3d-canvas {
+  height: 320px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+}
+
 /* --- Measurements --- */
 
 .stat-grid {
